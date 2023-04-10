@@ -9,4 +9,7 @@ declare global {
 	}
 }
 
-export {};
+declare module "~icons/*" {
+	import { SvelteComponentTyped } from "svelte";
+	export default class extends SvelteComponentTyped<svelte.JSX.IntrinsicElements["svg"]> {}
+}
