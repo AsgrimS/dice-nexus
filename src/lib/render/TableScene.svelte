@@ -4,8 +4,8 @@
 	import { degToRad } from "three/src/math/MathUtils";
 	import { World, Debug } from "@threlte/rapier";
 
-	import Dice from "./Dice.svelte";
-	import Table from "./Table.svelte";
+	import Dice from "$lib/render/Dice.svelte";
+	import Table from "$lib/render/Table.svelte";
 
 	import type { ColorRepresentation } from "three";
 

@@ -9,7 +9,7 @@
 		<TableScene bind:this={tableScene} />
 		<button
 			type="button"
-			class="btn variant-filled"
+			class="btn variant-filled-primary"
 			on:click={() => {
 				tableScene.spawnDice();
 			}}>
