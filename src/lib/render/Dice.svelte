@@ -2,10 +2,12 @@
 	import { T } from "@threlte/core";
 	import { RigidBody, AutoColliders } from "@threlte/rapier";
 
+	import type { ColorRepresentation } from "three";
+
 	export let type: string;
 	export let position: [x: number, y: number, z: number] = [0, 0, 0];
 	export let rotation: [number, number, number] = [0, 0, 0];
-	export let color: string = "#808080";
+	export let color: ColorRepresentation = "#808080";
 	export let linearVelocity: [number, number, number] = [0, 0, 0];
 </script>
 

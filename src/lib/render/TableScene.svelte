@@ -7,11 +7,13 @@
 	import Dice from "./Dice.svelte";
 	import Table from "./Table.svelte";
 
+	import type { ColorRepresentation } from "three";
+
 	type Body = {
 		id: string;
 		position: [number, number, number];
 		rotation: [number, number, number];
-		color: string;
+		color: ColorRepresentation;
 		type: string;
 	};
 
@@ -35,8 +37,8 @@
 		return [Math.random() * 10, Math.random() * 10, Math.random() * 10];
 	}
 
-	function getRandomColor(): string {
-		const colors = [
+	function getRandomColor(): ColorRepresentation {
+		const colors: ColorRepresentation[] = [
 			"red",
 			"blue",
 			"green",
