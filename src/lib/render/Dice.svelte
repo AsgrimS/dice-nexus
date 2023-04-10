@@ -9,9 +9,10 @@
 	export let rotation: [number, number, number] = [0, 0, 0];
 	export let color: ColorRepresentation = "#808080";
 	export let linearVelocity: [number, number, number] = [0, 0, 0];
+	export let angularVelocity: [number, number, number] = [0, 0, 0];
 </script>
 
-<RigidBody {position} {rotation} {linearVelocity} type={"dynamic"}>
+<RigidBody {position} {rotation} {linearVelocity} {angularVelocity} type={"dynamic"}>
 	<AutoColliders shape={"convexHull"} density={10}>
 		<T.Mesh castShadow>
 			{#if type === "D6"}

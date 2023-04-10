@@ -30,7 +30,7 @@
 	}
 
 	function getRandomPosition(): [number, number, number] {
-		return [-15, Math.random() + 5, 0.5 - Math.random()];
+		return [-13, Math.random() + 5, 0.5 - Math.random()];
 	}
 
 	function getRandomRotation(): [number, number, number] {
@@ -88,7 +88,8 @@
 				position={dice.position}
 				rotation={dice.rotation}
 				color={dice.color}
-				linearVelocity={[12, -3, 0]}
+				linearVelocity={[10, -3, 0]}
+				angularVelocity={[0, 0, -5]}
 			/>
 		{/each}
 
