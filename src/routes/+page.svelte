@@ -12,8 +12,7 @@
 			class="btn variant-filled"
 			on:click={() => {
 				tableScene.spawnDice();
-			}}
-		>
+			}}>
 			Spawn Dice
 		</button>
 	</div>

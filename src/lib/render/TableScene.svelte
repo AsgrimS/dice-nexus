@@ -89,8 +89,7 @@
 				rotation={dice.rotation}
 				color={dice.color}
 				linearVelocity={[10, -3, 0]}
-				angularVelocity={[0, 0, -5]}
-			/>
+				angularVelocity={[0, 0, -5]} />
 		{/each}
 
 		<Table />
