@@ -2,9 +2,13 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
+
+env:
+  NODE_VERSION: 18.x
+  PNPM_VERSION: 8
 
 jobs:
   Build:
@@ -12,6 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
+        with:
+          version: $PNPM_VERSION
       - uses: actions/setup-node@v3
         with:
           node-version: $NODE_VERSION
@@ -23,6 +29,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
+        with:
+          version: $PNPM_VERSION
       - uses: actions/setup-node@v3
         with:
           node-version: $NODE_VERSION
@@ -34,6 +42,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
+        with:
+          version: $PNPM_VERSION
       - uses: actions/setup-node@v3
         with:
           node-version: $NODE_VERSION
