@@ -25,6 +25,7 @@ jobs:
       - run: pnpm i --frozen-lockfile
 
   Lint:
+    needs: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -38,6 +39,7 @@ jobs:
       - run: pnpm lint
 
   Unit-test:
+    needs: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
