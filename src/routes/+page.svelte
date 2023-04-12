@@ -1,19 +1,5 @@
-<script lang="ts">
-	import TableScene from "../lib/render/TableScene.svelte";
-
-	let tableScene: TableScene;
-</script>
-
 <div class="w-screen h-screen">
-	<div class="w-full h-3/4 border-2 border-slate-500">
-		<TableScene bind:this={tableScene} />
-		<button
-			type="button"
-			class="btn variant-filled-primary"
-			on:click={() => {
-				tableScene.spawnDice();
-			}}>
-			Spawn Dice
-		</button>
-	</div>
+	<a href="/game/123">
+		<button class="btn variant-filled m-5">Join room 123</button>
+	</a>
 </div>
