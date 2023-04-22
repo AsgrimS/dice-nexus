@@ -14,12 +14,12 @@
 <AutoColliders shape={"cuboid"}>
 	<T.Mesh receiveShadow rotation.x={degToRad(-90)}>
 		<T.BoxGeometry args={[20, 20, 0.1]} />
-		<T.MeshStandardMaterial color="white" />
+		<T.MeshStandardMaterial color="gray" />
 	</T.Mesh>
 	{#each tableBordersOpts as [rotationY, position]}
 		<T.Mesh receiveShadow {position} rotation.y={degToRad(rotationY)}>
 			<T.BoxGeometry args={[20, 2, 0.1]} />
-			<T.MeshStandardMaterial color="white" />
+			<T.MeshStandardMaterial color="gray" />
 		</T.Mesh>
 	{/each}
 </AutoColliders>

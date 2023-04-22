@@ -4,20 +4,17 @@
 	import { degToRad } from "three/src/math/MathUtils";
 	import { World, Debug } from "@threlte/rapier";
 
-	import Dice from "$lib/render/Dice.svelte";
+	import Dice, { type DiceType } from "$lib/render/Dice.svelte";
 	import Table from "$lib/render/Table.svelte";
-
-	import type { ColorRepresentation } from "three";
 
 	type Body = {
 		id: string;
 		position: [number, number, number];
 		rotation: [number, number, number];
-		color: ColorRepresentation;
-		type: string;
+		type: DiceType;
 	};
 
-	const possibleDices = ["D6", "D8", "D12", "D20"];
+	const possibleDices: DiceType[] = ["D4", "D6", "D8", "D12", "D20"];
 
 	let dices: Body[] = [];
 
@@ -37,28 +34,11 @@
 		return [Math.random() * 10, Math.random() * 10, Math.random() * 10];
 	}
 
-	function getRandomColor(): ColorRepresentation {
-		const colors: ColorRepresentation[] = [
-			"red",
-			"blue",
-			"green",
-			"yellow",
-			"orange",
-			"purple",
-			"pink",
-			"black",
-			"white",
-			"gray",
-		];
-		return colors[getRandomInt(colors.length)];
-	}
-
 	export function spawnDice() {
 		const newDice: Body = {
 			id: getId(),
 			position: getRandomPosition(),
 			rotation: getRandomRotation(),
-			color: getRandomColor(),
 			type: possibleDices[getRandomInt(possibleDices.length)],
 		};
 		dices.push(newDice);
@@ -84,10 +64,9 @@
 
 		{#each dices as dice (dice.id)}
 			<Dice
-				type={dice.type}
+				type={"D6"}
 				position={dice.position}
 				rotation={dice.rotation}
-				color={dice.color}
 				linearVelocity={[10, -3, 0]}
 				angularVelocity={[0, 0, -5]} />
 		{/each}
