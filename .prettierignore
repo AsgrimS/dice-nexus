@@ -12,3 +12,6 @@ pnpm-lock.yaml
 
 # Vitest
 vite.config.ts.timestamp*
+
+# Prisma
+/prisma
