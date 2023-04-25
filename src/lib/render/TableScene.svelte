@@ -7,6 +7,8 @@
 	import Dice, { type DiceType } from "$lib/render/Dice.svelte";
 	import Table from "$lib/render/Table.svelte";
 
+	import type { Collider, RigidBody as RigidBodyType } from "@dimforge/rapier3d-compat";
+
 	type Body = {
 		id: string;
 		position: [number, number, number];
@@ -14,9 +16,26 @@
 		type: DiceType;
 	};
 
+	export function spawnDice() {
+		const newDice: Body = {
+			id: getId(),
+			position: getRandomPosition(),
+			rotation: getRandomRotation(),
+			type: possibleDices[getRandomInt(possibleDices.length)],
+		};
+		dices.push(newDice);
+
+		if (dices.length > 5) {
+			dices.splice(0, 1);
+		}
+
+		dices = dices;
+	}
+
 	const possibleDices: DiceType[] = ["D4", "D6", "D8", "D12", "D20"];
 
 	let dices: Body[] = [];
+	let tableColliders: Collider[];
 
 	function getId() {
 		return Math.random().toString(16).slice(2);
@@ -34,25 +53,15 @@
 		return [Math.random() * 10, Math.random() * 10, Math.random() * 10];
 	}
 
-	export function spawnDice() {
-		const newDice: Body = {
-			id: getId(),
-			position: getRandomPosition(),
-			rotation: getRandomRotation(),
-			type: possibleDices[getRandomInt(possibleDices.length)],
-		};
-		dices.push(newDice);
-
-		if (dices.length > 5) {
-			dices.splice(0, 1);
-		}
-
-		dices = dices;
-	}
+	// function onDiceSleep(event: CustomEvent<RigidBodyType>) {
+	// 	const body = event.detail;
+	// 	// console.log(body.numColliders());
+	// 	// console.log(body.collider(0).contactCollider(tableColliders[0], 0.01));
+	// }
 </script>
 
 <Canvas>
-	<World>
+	<World gravity={[0, 0, 0]}>
 		<Debug />
 		<T.PerspectiveCamera makeDefault position={[10, 10, 10]}>
 			<OrbitControls maxPolarAngle={degToRad(80)} enableZoom={true} />
@@ -63,14 +72,17 @@
 		<T.AmbientLight intensity={0.2} />
 
 		{#each dices as dice (dice.id)}
-			<Dice
-				type={"D6"}
-				position={dice.position}
-				rotation={dice.rotation}
-				linearVelocity={[10, -3, 0]}
-				angularVelocity={[0, 0, -5]} />
+			<!-- <Dice -->
+			<!-- 	type={"D8"} -->
+			<!-- 	position={dice.position} -->
+			<!-- 	rotation={dice.rotation} -->
+			<!-- 	linearVelocity={[10, -3, 0]} -->
+			<!-- 	angularVelocity={[0, 0, -5]} -->
+			<!-- 	on:sleep={onDiceSleep} /> -->
+
+			<Dice type={"D20"} position={[0, 5, 0]} />
 		{/each}
 
-		<Table />
+		<Table bind:colliders={tableColliders} />
 	</World>
 </Canvas>

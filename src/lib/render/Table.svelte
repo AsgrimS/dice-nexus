@@ -1,7 +1,10 @@
 <script lang="ts">
+	import type { Collider } from "@dimforge/rapier3d-compat";
 	import { T } from "@threlte/core";
 	import { AutoColliders } from "@threlte/rapier";
 	import { degToRad } from "three/src/math/MathUtils";
+
+	export let colliders: Collider[];
 
 	const tableBordersOpts: Array<[number, [number, number, number]]> = [
 		[90, [10, 1, 0]],
@@ -11,7 +14,7 @@
 	];
 </script>
 
-<AutoColliders shape={"cuboid"}>
+<AutoColliders shape={"cuboid"} bind:colliders>
 	<T.Mesh receiveShadow rotation.x={degToRad(-90)}>
 		<T.BoxGeometry args={[20, 20, 0.1]} />
 		<T.MeshStandardMaterial color="gray" />
