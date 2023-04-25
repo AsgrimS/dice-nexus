@@ -2,7 +2,7 @@
 	import { Canvas, T } from "@threlte/core";
 	import { OrbitControls } from "@threlte/extras";
 	import { degToRad } from "three/src/math/MathUtils";
-	import { World, Debug } from "@threlte/rapier";
+	import { World } from "@threlte/rapier";
 
 	import Dice, { type DiceType } from "$lib/render/Dice.svelte";
 	import Table from "$lib/render/Table.svelte";
@@ -53,7 +53,6 @@
 
 <Canvas>
 	<World>
-		<Debug />
 		<T.PerspectiveCamera makeDefault position={[10, 10, 10]}>
 			<OrbitControls maxPolarAngle={degToRad(80)} enableZoom={true} />
 		</T.PerspectiveCamera>
@@ -64,7 +63,7 @@
 
 		{#each dices as dice (dice.id)}
 			<Dice
-				type={"D6"}
+				type={dice.type}
 				position={dice.position}
 				rotation={dice.rotation}
 				linearVelocity={[10, -3, 0]}
