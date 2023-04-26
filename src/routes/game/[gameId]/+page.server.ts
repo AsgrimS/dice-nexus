@@ -2,17 +2,22 @@ import { error } from "@sveltejs/kit";
 
 import prisma from "$lib/prisma";
 
-import type { PageServerLoadEvent } from "./$types";
+import type { PageServerLoad } from "./$types";
 
-export async function load(event: PageServerLoadEvent) {
-	if (event.params.gameId !== "123") {
+export const load = (async ({ params }) => {
+	const gameId = parseInt(params.gameId);
+
+	const game = await prisma.game.findUnique({
+		where: { id: gameId },
+		include: { players: true },
+	});
+
+	if (!game) {
 		throw error(404, "Game not found");
 	}
 
-	const response = await prisma.game.findMany();
-
 	return {
-		gameId: "123",
-		games: response,
+		gameName: game.name,
+		players: game.players,
 	};
-}
+}) satisfies PageServerLoad;

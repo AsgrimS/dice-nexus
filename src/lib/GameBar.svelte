@@ -1,17 +1,33 @@
 <script lang="ts">
-	import TableScene from "$lib/render/TableScene.svelte";
+	import { popup } from "@skeletonlabs/skeleton";
+	import IconDoor from "~icons/ph/door";
 
-	export let gameId = "";
+	import TableScene from "$lib/render/TableScene.svelte";
+	import type { PopupSettings } from "@skeletonlabs/skeleton";
+
+	export let gameName: string;
 
 	let tableScene: TableScene;
+	let popupSettings: PopupSettings = {
+		event: "hover",
+		target: "exitPopup",
+	};
 </script>
 
-<div class="bg-surface-800 h-full w-80 grid grid-rows-[auto_300px]">
-	<div>
-		<h1>Game: {gameId}</h1>
+<div class="card p-2 variant-filled-tertiary" data-popup="exitPopup">Exit game.</div>
+
+<div class="bg-surface-800 h-full w-80 grid grid-rows-[100px_auto_300px]">
+	<div class="border-b-4 border-surface-400 variant-filled-surface grid grid-cols-[5fr_1fr]">
+		<h2 class="m-1">{gameName}</h2>
+		<a href="/">
+			<button class="btn variant-filled-tertiary m-5" use:popup={popupSettings}>
+				<IconDoor class="text-[2em]" />
+			</button>
+		</a>
 	</div>
-	<div class="m-0 variant-filled-secondary border-t-4 border-surface-400 flex flex-col">
-		<button class="btn variant-filled-primary m-3 " on:click={tableScene.spawnDice}>
+	<div />
+	<div class="m-0 variant-filled-surface border-t-4 border-surface-400 flex flex-col">
+		<button class="btn variant-filled-tertiary m-3 " on:click={tableScene.spawnDice}>
 			Spawn Dice
 		</button>
 		<div class="border-b-4 border-surface-400" />
