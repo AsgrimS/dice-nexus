@@ -7,7 +7,7 @@
 </script>
 
 <div class="w-full h-full p-1 grid grid-rows-[auto_64px]">
-	<div />
+	<div class="flex items-center justify-center" />
 	<div class="flex gap-3">
 		{#each players as player}
 			<Avatar initials={player.name} background="bg-primary-500" />

@@ -2,12 +2,10 @@
 	import { popup } from "@skeletonlabs/skeleton";
 	import IconDoor from "~icons/ph/door";
 
-	import TableScene from "$lib/render/TableScene.svelte";
 	import type { PopupSettings } from "@skeletonlabs/skeleton";
 
 	export let gameName: string;
 
-	let tableScene: TableScene;
 	let popupSettings: PopupSettings = {
 		event: "hover",
 		target: "exitPopup",
@@ -26,13 +24,5 @@
 		</a>
 	</div>
 	<div />
-	<div class="m-0 variant-filled-surface border-t-4 border-surface-400 flex flex-col">
-		<button class="btn variant-filled-tertiary m-3 " on:click={tableScene.spawnDice}>
-			Spawn Dice
-		</button>
-		<div class="border-b-4 border-surface-400" />
-		<div class="h-full">
-			<TableScene bind:this={tableScene} />
-		</div>
-	</div>
+	<div class="m-0 variant-filled-surface border-t-4 border-surface-400 flex flex-col" />
 </div>
